@@ -1,0 +1,535 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+* {
+    font-family: 'Lato', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /*Gives a nice scrolling behavior when we click the footer logo at the bottom to move to top.*/
+}
+
+h1, h2, h3, h4, h5, h6, span {
+    color: #242424;
+    text-align: center;
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+p {
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none; /*To remove the underline style of all anchor tags.*/
+    position: relative; /*.link__hover-effect:after will be positioned relative to anchor tag.*/
+}
+
+i {
+    transition: opacity 300ms ease; /*The opacity of i icon elements will be 0.7 upon hovering over them.*/
+}
+
+i:hover {
+    opacity: 0.7; 
+}
+
+.link__hover-effect:after {
+    content: "";
+    height: 3px;
+    width: 0; /*Width is 0 here so that the underlines are not visible until we hover over the anchor tag links.*/
+    position: absolute; /*so that the hover effect does not affect rest of the layout on the page.*/
+    bottom: -3px;
+    right: 0;
+    transition: all 300ms ease;
+}
+
+.link__hover-effect--black:after {
+    background-color: #000;
+}
+
+.link__hover-effect--white:after {
+    background-color: #fff;
+}
+
+.link__hover-effect:hover:after { /*Targeting the :after pseudo class in .link__hover-effect:hover*/
+    width: 100%; /*Underlines will be visible when we hover over the anchor tag links.*/
+    left: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.flex {
+    display: flex;
+    flex: 1;
+}
+
+.row { /*To cap/bound the width (or limit the stretchability) of different sections.*/
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 12px;
+}
+
+.text--purple {
+    color: #6030b1;
+}
+
+section:nth-child(even) { /*Every 2nd (or even) section will have a gray background color.*/
+    background-color: #f8f8f8;
+}
+
+.container { /*To add padding on the top and bottom for different sections.*/
+    padding: 50px 0;
+}
+
+.section__title {
+    margin-bottom: 20px;
+}
+
+/*NAVIGATION BAR*/
+
+nav {
+    height: 100px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto; /*To center the content horizontally.*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.nav__links--wrapper {
+    display: flex;
+}
+
+.nav__link--anchor {
+    margin: 0 12px;
+    color: #242424;
+    font-weight: 700;
+}
+
+.nav__link--anchor-primary {
+    background-color: #6030b1;
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: white;
+    transition: all 300ms ease; /* Putting transition in the parent will show the transition effect both when the cursor is going-in and going-out.*/
+}
+
+.nav__link--anchor-primary:hover {
+    background-color: #5d3eff;
+    /*transition: all 300ms ease; Putting transition here in the hover pseudo-class will only show the transition effect while the cursor is going-in.*/
+}
+
+.personal__logo {
+    font-size: 24px;
+    color: #6030b1;
+    margin: 0 12px;
+    font-weight: bold;
+}
+
+/*ABOUT ME*/
+
+#about-me {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-me__info { /*To make the about-me__img take up the entire remaining height.*/
+    display: flex;
+    flex-direction: column;
+    /*Next step is to do flex: 1; in the .about-me__img--container class.*/
+}
+
+.about-me__info--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.about-me__pic--container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+    margin-bottom: 16px;
+    animation: animate-profile-picture 800ms 200ms backwards; /*animation-name animation-duration animation-delay animation-direction*/
+    /*backwards animation-direction causes the profile picture to start from 0% at a scale of zero.*/
+}
+
+@keyframes animate-profile-picture { /*Animation for the About-me Profile Picture.*/
+    0% {
+        transform: scale(0);
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.about-me__pic {
+    width: 100%;
+
+    /*Improving Picture Visibility*/
+    transform: scale(1);
+    padding-top: 2px;
+    padding-left: 2px;
+}
+
+.wave {
+    display: inline-block; /*wave sign is in span element in our index.html and span is by default an inline element which cannot be rotated.
+    Inline elements change only according to the content size. Hence, we change the display to inline-block to have a rotate animation.*/
+    animation: animate-wave 500ms infinite ease-in-out;
+}
+
+@keyframes animate-wave { /*Animation for the Hand-Wave Sign.*/
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(30deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+/*Note: About-me title, para, and links, each have a animation-delay difference of 200ms so that they appear separately with some delay in-between.*/
+
+.about-me__info--title {
+    margin-bottom: 16px;
+    animation: fade-up 650ms 400ms backwards; /*animation-name animation-duration animation-delay animation-direction*/
+}
+
+.about-me__info--para {
+    font-size: 20px;
+    margin-bottom: 28px;
+    animation: fade-up 650ms 600ms backwards;
+}
+
+.about-me__link {
+    font-size: 20px;
+    color: #242424;
+    padding: 0 16px;
+}
+
+.about-me__links--wrapper {
+    animation: fade-up 650ms 800ms backwards;
+}
+
+@keyframes fade-up { /*Animation for the About-me Title, Paragraph, and Links.*/
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.about-me__img--container {
+    flex: 1;
+    /*To center the image:*/
+    display: flex;
+    align-items: center;
+    animation: fade-in 1200ms 800ms backwards;
+}
+
+.about-me__img {
+    width: 100%; /*To prevent the image from going out of the img--wrapper parent and to make it take up the entire div width.*/
+}
+
+@keyframes fade-in { /*Animation for the About-me Page Image.*/
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/*LANGUAGES OR TECH-STACK*/
+
+.language__list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.language {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    position: relative; /*To make the .language__name div to be positioned relative to the .language div.*/
+}
+
+.language__img--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 16px;
+}
+
+.language__img {
+    width: 100%;
+    max-width: 100px;
+    transition: all 300ms ease; /*ease just smoothes things out.*/
+}
+
+.language:hover .language__img { /*Targeting .language__img when we hover over the .language div.*/
+    filter: brightness(80%);
+    opacity: 0.86;
+    transform: scale(0.9);
+}
+
+.language__name {
+    position: absolute; /*To prevent the language name text from affecting the parent image's size as the
+    absolute position takes the language name text out of the dafault HTML flow and puts it on another layer.*/
+    bottom: 0; /*To make the language text appear at the bottom of the language image.*/
+    transform: scale(0);
+    opacity: 0;
+    transition: all 300ms;
+    font-size: 20px;
+}
+
+.language:hover .language__name { /*Targeting .language__name when we hover over the .language div.*/
+    transform: scale(1);
+    opacity: 1;
+}
+
+/*PROJECTS*/
+
+.project {
+    margin-bottom: 135px;
+}
+
+.project:last-child {
+    margin-bottom: 40px; /*The last child item of the project parent will have a different margin-bottom than the rest of the project.*/
+}
+
+.project__img {
+    width: 100%;
+    transition: all 500ms ease;
+}
+
+.project__wrapper {
+    display: flex; /*To make the image take up the entire height of the parent container.*/
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.project__wrapper:before { /*Put this styling before or on top of the .project__wrapper.*/
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #1c1d25;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 450ms ease;
+}
+
+.project:hover .project__wrapper:before { /*Show the styling in .project__wrapper:before only when we hover over the project list.*/
+    opacity: 0.7;
+    transform: translateY(0);
+}
+
+.project:hover .project__img { /*Targeting .project__img when we hover over the .project list.*/
+    transform: scale(1.07);
+    filter: blur(5px);
+}
+
+.project__list {
+    padding-top: 40px;
+}
+
+.project__description {
+    position: absolute;
+    top: 50%;
+    left: 90px;
+    transform: translateY(100%); /*Places the project__description text at the bottom in order to transform
+    and move in towards the center in .project:hover .project__description. {transform: translateY(-50%);}*/
+    max-width: 550px;
+    z-index: 3;
+    opacity: 0; /*So that the project description text is not over the image when we are not hovering over it.*/
+    transition: transform 450ms, opacity 300ms ease; /*Two different transitions are separated by a comma.*/
+}
+
+.project:hover .project__description {
+    opacity: 1;
+    transform: translateY(-50%); /*Move the project__description text to the center.*/
+    /*Note: It is important to write transition: transform 450ms, opacity 300ms ease; in the parent div
+    for the effects to appear and become visible.*/
+}
+
+.project__description--title {
+    font-size: 40px;
+}
+  
+.project__description--para {
+    margin: 16px 0;
+}
+
+.project__description--link {
+    font-size: 20px;
+    margin-right: 16px;
+}
+
+.project__description--title, .project__description--subtitle,
+.project__description--para, .project__description--link {
+    text-align: left;
+    color: #fff;
+}
+
+/*FOOTER*/
+
+footer {
+    background-color: #242424;
+}
+
+.footer__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8% 0;
+}
+
+.footer__logo--img {
+    transform: scale(0.5);
+    width: 100%;
+}
+
+.footer__link, .footer__copyright, .footer__logo--popper {
+    color: #fff;
+}
+
+.footer__links--wrapper {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 52px;
+}
+
+.footer__anchor {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.footer__logo--popper {
+    position: absolute;
+    right: 170px;
+    top: 30px;
+    font-weight: 700;
+    opacity: 0;
+    transition: all 300ms ease;
+}
+
+.footer__anchor:hover .footer__logo--popper {
+    transform: translateX(120px);
+    opacity: 1;
+}
+
+/*Display for Small phones, Tablets, and Large Smartphones*/
+
+@media(max-width: 768px) {
+    nav {
+        height: 68px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .about-me__info--para {
+        font-size: 18px;
+    }
+
+    .language {
+        width: calc(100% / 3);
+    }
+
+    .project__description--para {
+        font-size: 14px;
+    }
+
+    .project__description {
+        left: 30px;
+        padding-right: 30px;
+    }
+
+    .project {
+        margin-bottom: 50px;
+    }
+    
+    .project:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/*Display for Smaller phones, and Foldable Phones*/
+
+@media(max-width: 480px) {
+    .nav__link:not(:last-child) { /*Hide everything else in the nav link except the last child which is the Contact button.*/
+        display: none;
+    }
+
+    .project__description {
+        padding: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .project__description--para {
+        display: none;
+    }
+
+    .project__description--links {
+        display: flex;
+        justify-content: center;
+    }
+
+    .project__description--title {
+        line-height: 1;
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .project__description--subtitle {
+        text-align: center;
+        margin: 12px 0;
+    }
+
+    .project {
+        margin-bottom: 50px;
+    }
+    
+    .project:last-child {
+        margin-bottom: 0;
+    }
+}
